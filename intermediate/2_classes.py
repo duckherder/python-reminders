@@ -95,3 +95,9 @@ print("callable(dave.print_location) =", callable(dave.print_location))
 print("callable(UniversityStudent.print_location) =",
       callable(UniversityStudent.print_location))
 print("callable(UniversityStudent) =", callable(UniversityStudent))
+
+print("vars() built in function returns the __dict__ attribute of an object")
+# this is a list of the changeable attributes of dave
+print(vars(dave))
+print("when I do dave.name Python does a look-up in dave.__dict__")
+print(dave.__dict__)
