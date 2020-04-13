@@ -13,8 +13,8 @@ print(max(["bob", "tim", "andy"]))
 print(min([1, 2, -3]))
 
 print("use next function to read lines from file")
-with open('7_iterators.py', 'r') as f:        # f is a file handle but also an iterator
-    try:
+with open('7_iterators.py', 'r') as f:        # f is a file handle but also an iterator...
+    try:                                      # .. it has a __next__ attribute
         while True:
             current = next(f)
             print(current.strip())
@@ -27,14 +27,15 @@ print("common way to use an iterator is in a for loop")
 for item in my_list:
     print(item)
 
-print("or if you get given an iterator")
+print("or if you get given an iterator using iter() - a list is iterable but is not an iterator itself")
+# list have an __iter__ attribute to return an iterator but no __next__
 my_iter = iter(my_list)
 for item in my_iter:
     print(item)
 
-my_iter = iter(my_list)
 # note this is how a for loop is implemented
 print("you can use iter() and next()")
+my_iter = iter(my_list)
 while True:
     try:
         # next() will throw StopIteration if nothing left in iterable
@@ -57,13 +58,14 @@ print("we can create an iterable class by implementing __iter__ and __next__ att
 
 
 class IterableClass:
-    def __init__(self, limit):
+    """class is iterable but also an iterator"""        # note this is not always true - sometimes an iterable
+    def __init__(self, limit):                          # will return a separate iterator instance e.g. a list
         self.limit = limit
 
     def __iter__(self):                 # called when you use iter() on an instance of IterableClass
         # need to reset each time iter() is called else only works once
         self.value = 1
-        return self                     # makes the iterator iterable
+        return self                     # returns itself as the iterator
 
     def __next__(self):
         if self.value < self.limit:

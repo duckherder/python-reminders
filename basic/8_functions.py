@@ -68,7 +68,6 @@ def my_type_hinted_function2(name: str) -> bool:
     # however Python is not a statically typed language, so
     return "bob"
 
-
     # no errors will be generated - it is a hint only
 print(my_type_hinted_function2(1))
 
@@ -87,3 +86,9 @@ try:
     print(_my_local_variable)
 except NameError:
     print("local variable does not exist here - exception raised!")
+
+
+print("checking to see if an object is callable...")
+print("callable(my_local_variable_function) =",
+      callable(my_local_variable_function))
+print("callable([1, 2, 3]) =", callable([1, 2, 3]))

@@ -77,9 +77,11 @@ print("math.floor(1.5)= %d" % math.floor(1.5))      # round down
 print("round(1.6) = %d" % round(1.6))               # rounding to nearest
 print("round(1.4) = %d" % round(1.4))
 print("math.pi = %f" % math.pi)
-print("divmod(17, 3) = ", divmod(17, 3))       # returns quotient and remainder
+print("divmod(17, 3) =", divmod(17, 3))       # returns quotient and remainder
 # convert to a binary string
-print("bin(10) = ", bin(10))
-print("bin(31) = ", bin(31))
-print("oct(8) = ", oct(8))                          # convert to octal string
-print("sum([1, 2, 3]) = ", sum([1, 2, 3]))          # sum a list of numbers
+print("bin(10) =", bin(10))
+print("bin(31) =", bin(31))
+print("oct(8) =", oct(8))                          # convert to octal string
+print("sum([1, 2, 3]) =", sum([1, 2, 3]))          # sum a list of numbers
+print("pow(2, 4) =", pow(2, 4))                    # power function
+print("2**4 =", 2**4)

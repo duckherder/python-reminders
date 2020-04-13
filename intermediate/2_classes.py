@@ -89,3 +89,9 @@ print(twin_b)                       # uses __str__ method
 
 both_twins = twin_a + twin_b        # uses __add__ method
 print(both_twins)
+
+print("instance methods are callable...but so are class methods and classes...")
+print("callable(dave.print_location) =", callable(dave.print_location))
+print("callable(UniversityStudent.print_location) =",
+      callable(UniversityStudent.print_location))
+print("callable(UniversityStudent) =", callable(UniversityStudent))

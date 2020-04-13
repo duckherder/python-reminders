@@ -99,3 +99,15 @@ print(type(ord_value))
 
 # and back again using chr
 print(chr(ord_value))
+
+# f-strings
+print("f-strings are available in Python 3")
+my_integer = 10
+my_list = ['bob', 'dave']
+my_fstring = f"integer = {my_integer} and my_list is {my_list}"     # uses the f-prefix
+print("my_fstring:", my_fstring)
+print("you can call functions in f-strings...")
+my_fstring = f"integer**2 = {my_integer**2} and max(my_list) is {max(my_list)}"     # uses the f-prefix
+print("my_fstring:", my_fstring)
+print("use same formatting as with format...")
+print(f"integer = 0x{my_integer:02X}")
