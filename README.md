@@ -6,7 +6,9 @@ To run any of the scripts using Anaconda
 ```
 conda create -n reminders
 conda activate reminders
-conda install numpy
+conda install numpy pympler
+conda install -c conda-forge memory_profiler objgraph
+pip install guppy3
 ```
 
 then you can run any of the scripts, for example ```python basic\1_structure.py```
