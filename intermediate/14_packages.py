@@ -6,7 +6,8 @@ import my_package.roger                             # ...is an alternative
 from my_package.fab import MyFabClass as Tina
 # import all public APIs and variables
 from my_package.public_function import *
-
+from datetime import *                              # generally not recommended as you may import name conflicts
+                                                    # ...with other modules or reduce readability in code
 bernard.fab.my_fab_function('bernard?')
 
 print("use fab module directly to access classes, functions and module variables...")

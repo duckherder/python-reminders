@@ -38,3 +38,9 @@ print("underscores are used by convention to mean don't care")
 my_dict = {'bob': 1, 'tim': 2, 'ray': 3}
 for key, _ in my_dict.items():                  # don't care about the value just the key (or you can use keys())
     print("key: ", key)
+
+print("underscores can be used to make numbers more readable")
+my_number = 93203
+print(my_number)
+my_number = 93_203
+print(my_number)

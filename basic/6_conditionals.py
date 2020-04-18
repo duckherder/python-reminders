@@ -57,3 +57,7 @@ print(result)
 
 if x >= y and y < 5:                        # and, or, not operate on bool True and False objects
     print("use of logical and operator")
+
+print("we can use ternary conditonals...")
+result = True if x == 4 else False
+print(result)

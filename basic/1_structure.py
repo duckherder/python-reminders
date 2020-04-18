@@ -62,5 +62,8 @@ print(a, b, c)
 d = e = f = 4
 print(d)
 
+# getting help on some function, module etc..
+print(help(dir))
+
 if __name__ == '__main__':      # typical entry point for python program
     print("in main!")

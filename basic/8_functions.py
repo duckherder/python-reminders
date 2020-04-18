@@ -92,3 +92,12 @@ print("checking to see if an object is callable...")
 print("callable(my_local_variable_function) =",
       callable(my_local_variable_function))
 print("callable([1, 2, 3]) =", callable([1, 2, 3]))
+
+
+def my_function(number, a_list=[]):         # default values are evaluated when functions are created
+    a_list.append(number)                   # ..and not when function called, so take is required with
+    print(a_list)                           # mutable objects like lists
+
+my_function(1)
+my_function(2)                              # not what you might have expected, use a_list=None and create
+                                            # ..list in function if None

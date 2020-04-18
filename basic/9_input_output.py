@@ -34,8 +34,8 @@ print("file closed:", file_object.closed)
 print("all attributes of a file object")
 print(dir(file_object))
 
-with open("test.txt", "a") as file_object:            # with is a better to open a file
-    # empty line with just new line
+with open("test.txt", "a") as file_object:            # with is a better to open a file, example of a context..
+    # empty line with just new line                   # ..manager for managing resource - no need to call close()
     file_object.write("\n")
     file_object.write("I'm the third line!\n")
 
