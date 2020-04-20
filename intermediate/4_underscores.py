@@ -1,5 +1,8 @@
 """underscores are often used for variable names"""
 
+_MY_GLOBAL_VARIABLE = 'please do not import me'     # prevents modules that import this one being polluted by
+                                                    # ...this global (to this module) variable
+
 
 class TotalGenerator:
     def __init__(self):

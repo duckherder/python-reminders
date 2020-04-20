@@ -7,8 +7,11 @@ Built-in: preassigned names in python
 
 this is the order in which names are resolved in python
 """
-my_global_variable = 1     # an immutable integer of global scope
+my_global_variable = 1          # an immutable integer of global scope
 my_global_list = [1, 2, 3]
+
+MY_GLOBAL_LIST = [1, 2, 3]      # not syntactically required globals are usually in capitals
+_MY_GLOBAL_LIST = [1, 2, 3]     # use underscore if we don't want to be export this to another module
 
 
 def my_function(my_parameter_variable):

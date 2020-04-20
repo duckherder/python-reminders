@@ -3,6 +3,7 @@
 from math import factorial
 import datetime
 import numpy as np
+import sys
 
 print("time is ", datetime.datetime.now())
 # we can use factorial rather than math.factorial()
@@ -65,5 +66,6 @@ print(d)
 # getting help on some function, module etc..
 print(help(dir))
 
-if __name__ == '__main__':      # typical entry point for python program
-    print("in main!")
+if __name__ == '__main__':      # typical entry point for python program from interpreter, not another module
+    print("in main!")           # you would expect to call some function here and pass the return value to
+    sys.exit()                  # ..sys.exit. Note a None value is equivalent to passing 0 (ok)
