@@ -103,3 +103,11 @@ print("calling a functions with *args and **kwargs parameters...")
 args_and_kwargs(1, 2, [7, 'bob'])
 args_and_kwargs(mary=1, donald=2, sally=[7, 'bob'])
 args_and_kwargs(1, 2, sally=[7, 'bob'])
+
+print("note that the dictionary unpacking can also be used to merge dictionaries...")
+a = {'bob': 1, 'tom': 3, 'rodney': 5}
+b = {'sally': 5, 'susan': 7, 'amelia': 0}
+merged_dictionary = {**a, **b}
+print("a = ", a)
+print("b = ", b)
+print("merged_dictionary = ", merged_dictionary)

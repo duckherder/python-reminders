@@ -66,6 +66,8 @@ print(d)
 # getting help on some function, module etc..
 print(help(dir))
 
+# note __name__ is typically pronounced 'dunder name' - for double underscore
+
 if __name__ == '__main__':      # typical entry point for python program from interpreter, not another module
     print("in main!")           # you would expect to call some function here and pass the return value to
     sys.exit()                  # ..sys.exit. Note a None value is equivalent to passing 0 (ok)
