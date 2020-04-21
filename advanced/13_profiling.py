@@ -100,6 +100,14 @@ get_primes(10000, is_prime_fn1)
 get_primes(10000, is_prime_fn2)
 get_primes(10000, is_prime_lambda)
 
+print("for large lists of data it is often much faster to create a dictionary than perform linear search...")
+my_big_data_list = [(7263, 'bob'), (221333, 'sally'), (212892, 'simon')]
+for x in my_big_data_list:
+    if x[0] == 221333:
+        print("found them!")
+my_big_data_list_dict = {x[0]: x for x in my_big_data_list}         # use a dictionary comprehension
+print(my_big_data_list_dict)
+print(my_big_data_list_dict[221333])
 
 print("########## memory usage ############")
 
