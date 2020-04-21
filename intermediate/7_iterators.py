@@ -152,6 +152,7 @@ for zipped_tuple in zip(my_list_a, my_list_b, my_list_c):
 
 
 print("we can create an iterable class that returns a separate iterator object...")
+# note this is useful if you want multiple separate iterators looping over the same iterable object
 
 
 class StudentIteratorClass:
