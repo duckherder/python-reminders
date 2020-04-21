@@ -1,9 +1,8 @@
 import random
 
 # generators are for creating large lists that don't require large amount of memory like a list see PEP255
-print("allow you to declare a function that behaves like an iterator - a lazy iterator")
-
-print("using a generator function and yield...")
+print("generators allow you to declare a function that behaves like an iterator - a lazy iterator")
+print("using a generator function and yield...")    # generators behave like iterators but are implemented differently
 
 
 # you could make generator create an infinite list
@@ -167,3 +166,35 @@ try:
     value = next(my_close_yield)
 except StopIteration:
     print("caught stop iteration - thrown by next() function")
+
+
+print("'yield from' allows for delegation to sub-generators...")
+# see https://docs.python.org/3/whatsnew/3.3.html#pep-380
+
+print("simple example")
+my_sub_generator = ['bob', 'sally', 'donald']       # a list can be considered a sub-generator
+
+def my_generator():
+    yield from my_sub_generator                     # this could be any generator function or comprehension
+    yield from range(3)
+    yield from (x for x in my_sub_generator)
+    yield (x for x in my_sub_generator)             # if i just yield, it will a generator object instead
+
+for x in my_generator():
+    print(x)
+
+
+print("can be useful for recursive traversal of tree...")
+my_nested_list = [[[1, 2, 3], 'bob', 'john'], ['sally', 'susan', 'amelia']]
+
+def traverse_nested_lists(a_node):
+    if type(a_node) is not list:
+        print("yielding a node")
+        yield a_node
+    else:
+        print("recurse nested list")
+        for node in a_node:
+            yield from traverse_nested_lists(node)
+
+for x in traverse_nested_lists(my_nested_list):
+    print(x)
