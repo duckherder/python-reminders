@@ -8,6 +8,7 @@ class MyClassWithoutSlots(object):
 
 
 class MyClassWithSlots(object):
+    # instead of class variables being stored in __dict__ known variables can be stored in __slots__
     __slots__ = ['x', 'y', 'z']
     def __init__(self, x):
         self.x = x
@@ -33,5 +34,6 @@ print(my_instance_with_slots.__slots__)
 my_instance_list_without_slots = [MyClassWithoutSlots(x) for x in range(1000)]
 my_instance_list_with_slots = [MyClassWithSlots(x) for x in range(1000)]
 
+# storing variables in __slots__ rather than __dict__ can save significant amount of RAM
 print("memory required for 1000 object without slots =", asizeof.asizeof(my_instance_list_without_slots))
 print("memory required for 1000 object with slots =", asizeof.asizeof(my_instance_list_with_slots))
