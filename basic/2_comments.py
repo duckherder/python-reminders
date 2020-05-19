@@ -1,3 +1,5 @@
+"""Some examples of how to add comments to Python code."""
+
 # This is a comment
 # and also like this
 
@@ -25,7 +27,7 @@ def print_function(my_string):
 
 
 def pretty_print_function(my_string) -> bool:
-    """Print a user defined string.        -> according to PEP0257 triple quotes are preferred for docstrings
+    """Print a user defined string.        -> according to PEP0257 triple double quotes are preferred for docstrings
                                            -> also note that description should end in a period (full stop)
     :param my_string:     String to print
     :return:              True if successful, False otherwise   -> note no blank lines before or after docstring

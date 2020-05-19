@@ -1,37 +1,39 @@
+"""Python strings and formatting."""
+
 # quotation types: python supports single, double and triple quotations
 my_string_single = 'Hello world'
 my_string_double = "Hello again world"
 my_multi_line_string = '''This is a string
 over two lines'''
 
-print("we can see that these are of type 'str'")
+print("\nwe can see that string variables are of type 'str'...")
 print(type(my_string_single))
 
 # quotes within quotes
 my_nested_string = "my nested 'string'"
-print("we can nest quotes within quotes")
+print("\nwe can nest quotes within quotes...")
 print(my_nested_string)
 
 my_nested_string = 'my nested "string"'
 print(my_nested_string)
 
-# concatenation
+print("\nwe can concatenate strings using the '+' operator...")
 print("you can " + "concatenate" + " strings like this")
 print('you can ' + "mix" + ' quotes but not recommended')
 
-# repetition with the * operator
+print("\nrepetition with the '*' operator...")
 bob = "again.." * 5
 print(bob)
 
-# escape characters
+print("\nescape characters...")
 print("this is a \n string with the '\\n' escape character")
 print('this works for single\n quoted strings as well')
 
-# strings have methods and you can apply method direct to literals
+print("\nstrings have methods and you can apply method direct to literals...")
 print("capitalise this sentence with a method.".capitalize())
 print("concatenate using ".join("the join method"))
 
-# formatting
+print("\nformatting...")
 my_integer = 10
 # variable string parameters to print, no space required
 print("integer value is", my_integer)
@@ -52,14 +54,14 @@ def print_hex(my_string):
     print(":".join("{:02x}".format(ord(c)) for c in my_string))
 
 
-# raw strings using the r prefix
+print("\nraw strings using the 'r' prefix...")
 raw_string = r"\n"
 normal_string = "\n"
 print("compare ASCII hex of a raw string with the new line string versus normal string with ASCII line feed")
 print_hex(raw_string)
 print_hex(normal_string)
 
-# unicode and UTF-8
+print("\nunicode and UTF-8...")
 my_string = 'A unicode # string'
 # in Python 3 all strings are unicode by default, so no need for u prefix
 my_ustring = 'A unicode \u018e string'
@@ -89,7 +91,7 @@ recovered_ustring = utf8_encoded.decode('utf-8')
 print(recovered_ustring)
 print(type(recovered_ustring))
 
-# character conversions
+print("\ncharacter conversions...")
 ord_value = ord('a')
 print(ord_value)
 print(type(ord_value))
@@ -100,14 +102,14 @@ print(type(ord_value))
 # and back again using chr
 print(chr(ord_value))
 
-# f-strings
+print("\nf-strings...")
 print("f-strings are available in Python 3")
 my_integer = 10
 my_list = ['bob', 'dave']
 my_fstring = f"integer = {my_integer} and my_list is {my_list}"     # uses the f-prefix
 print("my_fstring:", my_fstring)
-print("you can call functions in f-strings...")
+print("you can call functions in f-strings")
 my_fstring = f"integer**2 = {my_integer**2} and max(my_list) is {max(my_list)}"     # uses the f-prefix
 print("my_fstring:", my_fstring)
-print("use same formatting as with format...")
+print("use same formatting as with format")
 print(f"integer = 0x{my_integer:02X}")

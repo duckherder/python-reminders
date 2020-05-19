@@ -1,3 +1,4 @@
+"""Various types of mutable and immutable containers supported by Python."""
 
 print("\nlists...")
 # you create a simple list of the same type
@@ -23,7 +24,7 @@ print("can create lists using a list comprehension")
 bob_list = ["bob" for i in range(4)]
 print(bob_list)
 
-print("can concatenate lists")
+print("can concatenate lists using += operator")
 my_simple_list += my_mixed_list
 print(my_simple_list)
 
@@ -32,19 +33,16 @@ print("list access using [n]")
 print(my_mixed_list[0])
 print(my_mixed_list[3])
 
-# list are mutable so you can change values and types
 print("lists are mutable so you change values in the list")
 my_mixed_list[0] = 'sam'
 my_mixed_list[1] = 19
 print(my_mixed_list)
 
-# you can add new members to the list using the append method
-print("you can add - append - to the end of a list")
+print("you can append new members to the end of a list")
 my_simple_list.append(3)
 print(my_simple_list)
 
-# you can remove specific elements from the list
-print("you can delete an element")
+print("you can delete a specific element from a list")
 del my_simple_list[1]
 print(my_simple_list)
 
@@ -54,16 +52,16 @@ print(my_numbers)
 my_numbers.remove(1)
 print(my_numbers)
 
-print("count the number of objects in a list")
+print("get the number of objects in a list using count() method")
 print(my_numbers.count(2))
 print(my_numbers.count('sally'))
 
-print("you can find index of first matching objects")
+print("you can find the first matching objects using index() method")
 print(my_numbers.index(2))
 try:
     print(my_numbers.index('sally'))
 except ValueError:
-    print("..which will raise an exception if not in the list..")
+    print("..which will raise a ValueError exception if not in the list")
 
 my_list = [2, 1, 4, 3]
 print("you can sort a list using sorted() built in function")
@@ -71,9 +69,9 @@ print("my_list = ", my_list)
 print("sorted list =", sorted(my_list))
 print("reverse sorted list =", sorted(my_list, reverse=True))
 
-print("creating an empty list")
+print("create an empty list")
 my_empty_list = []
-# though this will create an empty list it is slower (apparently)...
+# using list() directly will create an empty list it is slower (apparently)...
 my_other_empty_list = list()
 # ...and really this is for casting other iterables to a list
 
@@ -96,9 +94,8 @@ print("difference is that tuples are immutable")
 try:
     my_tuple[0] = "d"
 except TypeError:
-    print("...and will raise an exception if you try!")
+    print("...and will raise an exception if you try to modify them!")
 
-# you can concatenate tuples
 print("concatenation is possible but only if you are creating a new tuple")
 my_cat_tuple = my_tuple + my_comma_tuple + (34,)
 print(my_cat_tuple)
@@ -141,19 +138,19 @@ print("\nsets...")
 print("sets are unordered and un-indexed so no [] access")
 bob = {6, 7, 8}
 dick = {8, 9}
-print(bob)
-print(dick)
+print("bob =", bob)
+print("dick =", dick)
 print("they contain only one version of an object - duplicates are removed")
 animals = {"dog", "cat", "dog"}
-print(animals)
+print("animals =", animals)
 print("you can do many of the basic operations you can perform on a normal mathematical set")
-print("difference = ", bob-dick)
-print("difference = ", bob.difference(dick))
+print("difference between bob and dick = ", bob-dick)
+print("difference using difference() = ", bob.difference(dick))
 print("you can see all available list functions and attributes using dir()")
 print(dir(set))
 bob.add(5)
 print("adding to bob: ", bob)
-print("intersection: ", bob.intersection(dick))
-print("intersection: ", bob & dick)
-print("union: ", bob.union(dick))
-print("union: ", bob | dick)
+print("intersection of bob and dick: ", bob.intersection(dick))
+print("intersection using '&' operator: ", bob & dick)
+print("union of bob and dick: ", bob.union(dick))
+print("union using '|' operator: ", bob | dick)

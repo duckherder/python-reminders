@@ -1,20 +1,23 @@
-"""Demonstration of some basic features."""
+"""Demonstration of some basic structural features."""
+
 # various methods for importing modules from other packages
 from math import factorial
 import datetime
 import numpy as np
 import sys
 
+print("\nbasic structure allows use of functions and statements...")
 print("time is ", datetime.datetime.now())
 # we can use factorial rather than math.factorial()
 print("5! = ", factorial(5))
 array = np.array([1, 2, 3])     # use simpler/shorter module name
 print(array)
 
+# conditional statements
 if np.size(array) > 0:
     print("array is not empty!")
 
-print("case sensitive so my_var and MY_VAR are different variables")
+print("\ncase sensitive so my_var and MY_VAR are different variables...")
 my_var = 3
 MY_VAR = 4
 print("my_var at", id(my_var), "with value", my_var)
@@ -58,13 +61,14 @@ my_dictionary = {
 print(my_dictionary)
 
 # multiple assignment
+print("\nyou can use multiple assignment syntax such as a, b,c = 1, 2, 3...")
 a, b, c = 1, 2, 3
 print(a, b, c)
 d = e = f = 4
 print(d)
 
-# getting help on some function, module etc..
-print(help(dir))
+print("\nuse help() to get help on functions and modules etc...")
+help(dir)
 
 # note __name__ is typically pronounced 'dunder name' - for double underscore
 
