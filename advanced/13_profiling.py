@@ -1,3 +1,5 @@
+"""Profiling CPU and memory with Python."""
+
 import time
 import timeit
 import statistics       # in standard library since Python 3.4/PEP450
@@ -26,6 +28,7 @@ def is_prime_fn2(x):
 
 is_prime_lambda = lambda x: all(x % i != 0 for i in range(2, int(x**.5)+1))
 
+
 def get_primes(y, func):
     _primes = []
     for val in range(y):
@@ -33,7 +36,8 @@ def get_primes(y, func):
             _primes.append(val)
     return _primes
 
-print("we can use time.time()...")
+
+print("\nwe can use time.time() to time code...")
 start_time = time.time()
 print(get_primes(1000, is_prime_fn1))
 print(get_primes(1000, is_prime_fn2))
@@ -41,7 +45,7 @@ print(get_primes(1000, is_prime_lambda))
 end_time = time.time()
 print(f"elapsed time = {end_time - start_time} seconds")
 
-print("we can use time.perf_counter() for system wide elapsed time...")
+print("\nwe can use time.perf_counter() for system wide elapsed time...")
 start_time = time.perf_counter()            # time.clock() deprecated in Python 3.8
 get_primes(10000, is_prime_fn1)
 print(f"is_prime_fn1 elapsed time = {time.perf_counter()- start_time} seconds")
@@ -54,17 +58,17 @@ start_time = time.perf_counter()
 get_primes(10000, is_prime_lambda)
 print(f"is_prime_lambda elapsed time = {time.perf_counter()- start_time} seconds")
 
-print("we can use time.process_time() if only want time for this process, excluding any sleeps...")
+print("\nwe can use time.process_time() if only want time for this process, excluding any sleeps...")
 start_time = time.process_time()
 get_primes(10000, is_prime_lambda)
 print(f"is_prime_lambda elapsed time = {time.process_time()- start_time} seconds")
 
-print("we can use time.process_time_ns() for nanoseconds counting...")
+print("\nwe can use time.process_time_ns() for nanoseconds counting...")
 start_time = time.perf_counter_ns()
 print("hello!")
 print(f"print elapsed time = {time.perf_counter_ns()- start_time}ns")
 
-print("we can use timeit.timeit if you prefer...")
+print("\nwe can use timeit.timeit if you prefer...")
 print(timeit.timeit("get_primes(10000, is_prime_fn1)", globals=globals(), number=5))
 print(timeit.timeit("get_primes(10000, is_prime_fn2)", globals=globals(), number=5))
 print(timeit.timeit("get_primes(10000, is_prime_lambda)", globals=globals(), number=5))
@@ -95,12 +99,12 @@ def get_primes(y, func):
     return _primes
 
 
-print("we can use a decorator if we so wish...")
+print("\nwe can use a decorator if we so wish...")
 get_primes(10000, is_prime_fn1)
 get_primes(10000, is_prime_fn2)
 get_primes(10000, is_prime_lambda)
 
-print("for large lists of data it is often much faster to create a dictionary than perform linear search...")
+print("\nfor large lists of data it is often much faster to create a dictionary than perform linear search...")
 my_big_data_list = [(7263, 'bob'), (221333, 'sally'), (212892, 'simon')]
 for x in my_big_data_list:
     if x[0] == 221333:
@@ -111,6 +115,7 @@ print(my_big_data_list_dict[221333])
 
 print("########## memory usage ############")
 
+print("\nmemory usage...")
 my_number_list = [1, 2, 3, 4]
 print("some objects have the __sizeof__ attribute")
 print("my_list =", my_number_list)
@@ -145,7 +150,7 @@ print("sys.getsizeof(my_string_list) + sys.getsizeof('hello world') + ... =",
 print("asizeof.asizeof(my_number_list) =", asizeof.asizeof(my_number_list))
 print("asizeof.asizeof(my_string_list) =", asizeof.asizeof(my_string_list))
 
-print("using tracemalloc...")
+print("\nusing tracemalloc...")
 tracemalloc.start()
 trace_malloc_vector = [z for z in range(1000)]
 memory_snapshot = tracemalloc.take_snapshot()
@@ -153,7 +158,7 @@ stats = memory_snapshot.statistics('lineno')
 for stat in stats[:10]:
     print(stat)
 
-print("using guppy...")
+print("\nusing guppy...")
 h = hpy()
 h.setrelheap()
 my_number_heaped_list = ['red', 'brown', 'green', 'blue']
@@ -161,7 +166,8 @@ print(my_number_heaped_list)
 result = h.heap()
 print(result)
 
-print("using memory_profiler...")
+
+print("\nusing memory_profiler...")
 @profile
 def my_func():
     a = [1] * (10 ** 6)
@@ -169,9 +175,10 @@ def my_func():
     del b
     return a
 
+
 my_func()
 
-print("using objgraph...")
+print("\nusing objgraph...")
 objgraph.show_most_common_types()
 objgraph.show_growth(limit=3)
 my_new_number_list = [1, 2, 3, 4]

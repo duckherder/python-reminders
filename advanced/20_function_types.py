@@ -1,4 +1,6 @@
-"""more on different types of functions in Python 3"""
+"""More on different types of functions in Python 3."""
+
+
 class Bob(object):
     def __init__(self):
         pass
@@ -16,6 +18,7 @@ class Bob(object):
     @classmethod
     def a_class_method(cls):
         pass
+
 
 # see https://stackoverflow.com/questions/10401935/python-method-wrapper-type
 print("\n")
@@ -37,8 +40,10 @@ print("my_instance.a_method =", my_instance.a_method)   # bound method
 print("my_instance.a_static_method =", my_instance.a_static_method) # function
 print("my_instance.a_class_method =", my_instance.a_class_method)   # bound method (bound to class)
 
+
 def a_function():
     pass
+
 
 print("\n")
 print("a_function =", a_function)                       # function

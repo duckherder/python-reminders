@@ -1,4 +1,7 @@
+"""Implements a singleton design pattern in Python."""
+
 import functools
+
 
 # from https://realpython.com/primer-on-python-decorators/#creating-singletons
 def singleton(cls):
@@ -14,6 +17,7 @@ def singleton(cls):
     wrapper_singleton.instance = None
     return wrapper_singleton            # return instance of class, rather than function with other decorators
 
+
 @singleton
 class MySingleton:
     def __init__(self, parameter):
@@ -23,13 +27,13 @@ class MySingleton:
         print("parameter =", self.parameter)
 
 
-print("create a MySingleton...")
+print("\ncreate a MySingleton...")
 my_singleton = MySingleton('my_parameter_string')       # MySingleton is really wrapper_singleton(MySingleton)
 print("singleton at", id(my_singleton))
 print("type(my_singleton) =", type(my_singleton))       # ..which returns a MySingleton instance
 my_singleton.do_some_stuff()
 
-print("create a another MySingleton...")
+print("\ncreate a another MySingleton...")
 my_singleton_copy = MySingleton('my_other_parameter_string')       # this is wrapper_singleton(MySingleton)
 print("singleton at", id(my_singleton_copy))
 my_singleton.do_some_stuff()        # not what you might expect -> my_other_parameter_string ignored

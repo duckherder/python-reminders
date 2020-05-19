@@ -1,5 +1,18 @@
+"""Classes that implement the descriptor protocol and allow specialised behaviour when accessed.
+
+The descriptor interface includes the following methods:
+    __get__()
+    __set__()
+    __delete__()
+    __set_name__()
+
+If class only implements __get__ then it is a non-data descriptor, else it
+is called a data-descriptor.
+"""
+
 import types
 import inspect
+
 
 class MyNonDataDescriptor:
     def __init__(self):
@@ -7,7 +20,7 @@ class MyNonDataDescriptor:
 
     def __get__(self, obj, type=None):                          # self is MyNonDataDescriptor instance
         print("__get__ called in MyNonDataDescriptor")          # and obj is the object we're attached to
-        print("__get__ obj=", obj, "type=", type)               # ...sou'll get a MyClass obj in this case
+        print("__get__ obj=", obj, "type=", type)               # ...you'll get a MyClass obj in this case
         return 19
 
 
@@ -38,7 +51,6 @@ class MyReadOnlyDescriptor:
     def __set__(self, obj, value):
         print("__set__ called in MyReadOnlyDescriptor")
         raise AttributeError("this value is read only!")
-
 
 
 class MyClass:
@@ -114,6 +126,7 @@ my_instance.do_something(my_instance)
 
 class MyClass:
     my_class_variable = 1                   # not a descriptor, will appear in MyClass.__dict__
+
     def __init__(self):
         self.my_instance_variable = 2       # will appear in my_instance.__dict__
 
@@ -140,6 +153,7 @@ print("\ndynamically adding a method to an object instance...")
 my_instance.my_method = types.MethodType(my_dynamic_method, my_instance)
 my_instance.my_method(5)            # method only available to this instance
 del my_instance.my_method
+
 
 class MyFunctionDescriptor:
     def __init__(self):
@@ -190,7 +204,7 @@ class MySelf:
     my_dynamic_something = MyDynamicFunctionDescriptor()
 
 
-print("use descriptor object to call instance method...")
+print("\nuse descriptor object to call instance method...")
 my_instance = MySelf()
 my_instance.my_do_something('how odd')
 my_instance.my_dynamic_something(19)
@@ -215,11 +229,12 @@ class MyInstanceDescriptor:
 class MyClass:
     print("create instance descriptor in MyClass")
     my_instance_descriptor = MyInstanceDescriptor()
+
     def __init__(self):
         pass
 
 
-print("to get descriptors to work with instances, not just classes...")
+print("\nto get descriptors to work with instances, not just classes...")
 my_instance1 = MyClass()
 my_instance2 = MyClass()
 

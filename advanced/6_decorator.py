@@ -1,6 +1,7 @@
-"""decorators are higher order functions that accept functions and return another function that executes the original"""
+"""Decorators are higher order functions that accept functions and return another function that executes the original"""
 import datetime
 import functools
+
 
 def check_value(func):
     """checking value parameter decorator - function that returns a function."""
@@ -36,7 +37,7 @@ def my_function(name, value):
     return
 
 
-print("we can stack these functions so one will call the other...")
+print("\nwe can stack functions so one will call the other...")
 my_fixed_name_function = fix_name(my_function)                  # a way to create a decorated version of function
 my_value_checked_and_fixed_name_function = check_value(my_fixed_name_function)
 # original my_function has been decorated
@@ -53,7 +54,7 @@ def my_decorated_function(name, value):     # ...check_value(fix_name(negate_val
     return value
 
 
-print("we can use the @symbol to simplify decoration of a function")
+print("\nwe can use the @symbol to simplify decoration of a function...")
 print("my_decorated_function.__name__ =", my_decorated_function.__name__)       # not what we expected
 ret_value = my_decorated_function("hello world!", 0)
 print("ret_value from my_decorated_function =", ret_value)      # check value decorator used before negate_value
@@ -77,7 +78,7 @@ def my_other_function(place, time):
     print("meet me at", place, "at", time)
 
 
-print("we can use args and kwargs to make decorators suitable for different functions and parameters...")
+print("\nwe can use args and kwargs to make decorators suitable for different functions and parameters...")
 my_function('bob', 34, 'smith', middle_name='reginald')
 my_other_function('underneath the arches', datetime.datetime.now())
 
@@ -113,7 +114,7 @@ def my_function():
     print("hello from function!")
 
 
-print("wraps() decorator from functools can be used to preserve original name and docstring...")
+print("\nwraps() decorator from functools can be used to preserve original name and docstring...")
 my_function()
 print("my_function.__name__ =", my_function.__name__)
 print("my_function.__doc__ =", my_function.__doc__)
@@ -131,7 +132,7 @@ def my_function():
     return 'hello from my_function'
 
 
-print("decorators can be very simple for debugging or registering...")
+print("\ndecorators can be very simple for debugging or registering...")
 print(my_function())
 
 print("#################################")
@@ -155,7 +156,7 @@ def my_function():
     print("in my_function")
 
 
-print("we can pass parameters to a decorator using an extra function wrapper...")
+print("\nwe can pass parameters to a decorator using an extra function wrapper...")
 my_function()                                       # do_decoration is done here
 
 print("#################################")
@@ -193,7 +194,7 @@ def my_function():
     print("in my_function")
 
 
-print("calling function with non-parameterised decorator...")
+print("\ncalling function with non-parameterised decorator...")
 my_function()
 # my_function is actually the decorated function do_decoration so we can access its attributes
 print("number of decorations:", my_function.number_decorations)
@@ -206,7 +207,7 @@ def my_function():                      # ...my_param_decorator(an_integer=2)(my
     print("in my_function")
 
 
-print("calling function with parameterised decorator...")
+print("\ncalling function with parameterised decorator...")
 my_function()
 my_function()
 print("number of decorations:", my_function.number_decorations)

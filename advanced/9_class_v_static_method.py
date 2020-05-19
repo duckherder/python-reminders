@@ -1,3 +1,6 @@
+"""Class and static methods."""
+
+
 class MyClass:
     class_value = 5
     # this will be called when the class MyClass is instantiated as an object
@@ -30,19 +33,16 @@ class MyClass:
     # set_static_method_value(5)
 
 
-print("\n")
-print(f"MyClass is a class but is also an object {MyClass} at {id(MyClass)}")
+print(f"\nMyClass is a class but is also an object {MyClass} at {id(MyClass)}")
 print(f"we can access of class values at {id(MyClass.class_value)} directly")
 print("MyClass.class_value =", MyClass.class_value)
-print("\n")
 
 my_instance = MyClass()
-print(f"my_instance is an instance of the class and an object at {id(my_instance)}")
+print(f"\nmy_instance is an instance of the class and an object at {id(my_instance)}")
 print(f"we can access of class values of the instance at the same address {id(my_instance.class_value)}")
 print("my_instance.class_value =", my_instance.class_value)
-print("\n")
 
-print("...as such if we change the class value e.g. MyClass.class_value = 6, it changes in both class and instance...")
+print("\n...as such if we change the class value e.g. MyClass.class_value = 6, it changes in both class and instance...")
 MyClass.class_value = 6
 print("MyClass.class_value =", MyClass.class_value)
 print("my_instance.class_value =", my_instance.class_value)
@@ -54,49 +54,41 @@ new_instance = MyClass(new_class_value=8, new_instance_value=11)
 print("MyClass.class_value =", MyClass.class_value)
 print("my_instance.class_value =", my_instance.class_value)
 print("new_instance.class_value =", new_instance.class_value)
-print("\n")
 
-print("no MyClass.self.instance_value but we see my_instance.instance and new_instance.instance are different...")
+print("\nno MyClass.self.instance_value but we see my_instance.instance and new_instance.instance are different...")
 print(f"my_instance.instance_value at {id(my_instance.instance_value)} of value {my_instance.instance_value}")
 print(f"new_instance.instance_value at {id(new_instance.instance_value)} of value {new_instance.instance_value}")
-print("\n")
 
-print("what if i set the class value using the standard set_value() method...")
+print("\nwhat if i set the class value using the standard set_value() method...")
 print("new_instance.set_value(15)")
 new_instance.set_value(15)
 print("MyClass.class_value =", MyClass.class_value)
 print("my_instance.class_value =", my_instance.class_value)
 print("new_instance.class_value =", new_instance.class_value)
-print("\n")
 
-print("perhaps not as expected now we have a naming conflict as we managed to create a new object...")
+print("\nperhaps not as expected now we have a naming conflict as we managed to create a new object...")
 print(f"MyClass.class_value at {id(MyClass.class_value)} of {MyClass.class_value}")
 print(f"new_instance.class_value at {id(new_instance.class_value)} of value {new_instance.class_value}")
 print("the instance version of class_value (in new_instance only) is different to the class version of class_value")
-print("\n")
 
-print("using a class method would have been the way...")
+print("\nusing a class method would have been the way...")
 print("MyClass.set_class_method_value(16)")
 MyClass.set_class_method_value(16)
 print("MyClass.class_value =", MyClass.class_value)
 print("my_instance.class_value =", my_instance.class_value)
-print("\n")
 
-print("we can also use a static method but not really what it is for...")
+print("\nwe can also use a static method but not really what it is for...")
 print("MyClass.set_static_method_value(17)")
 MyClass.set_static_method_value(17)
 print("MyClass.class_value =", MyClass.class_value)
 print("my_instance.class_value =", my_instance.class_value)
-print("\n")
 
-print("we can see how the various methods for the class MyClass are bound...")
+print("\nwe can see how the various methods for the class MyClass are bound...")
 print("MyClass.set_value is bound as %s" % MyClass.set_value)
 print("MyClass.set_class_method_value is bound as %s" % MyClass.set_class_method_value)
 print("MyClass.set_static_method_value is bound as %s" % MyClass.set_static_method_value)
-print("\n")
 
-print("we can see how the various methods for the instance my_instance are bound...")
+print("\nwe can see how the various methods for the instance my_instance are bound...")
 print("my_instance.set_value is bound as %s" % my_instance.set_value)
 print("my_instance.set_class_method_value is bound as %s" % my_instance.set_class_method_value)
 print("my_instance.set_static_method_value is bound as %s" % my_instance.set_static_method_value)
-print("\n")

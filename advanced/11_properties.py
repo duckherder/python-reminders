@@ -1,3 +1,6 @@
+"""Properties are data descriptors for controlling parameter getters and setters."""
+
+
 class MyClass:
     def __init__(self, a_value):
         self._my_value = a_value
@@ -11,7 +14,7 @@ class MyClass:
         self._my_value = a_value
 
 
-print("we can create a normal class and has setters and getters...")
+print("\nwe can create a normal class that has setters and getters...")
 my_instance = MyClass(13)
 my_instance.set_value(21)
 print("my_instance._my_value =", my_instance._my_value)             # semi-private but accessible
@@ -23,7 +26,9 @@ print(my_property)
 print(dir(my_property))
 
 
-print("we can create a class with getters and setters properties defined...")
+print("\nwe can create a class with getters and setters properties defined...")
+
+
 class MyPropertyClass:
     def __init__(self, a_value):
         self._my_value = a_value
@@ -43,12 +48,12 @@ class MyPropertyClass:
 
 
 my_instance = MyPropertyClass(7)
-print("\nwe can inspect the attributes of the class property")
+print("\nwe can inspect the attributes of the class property...")
 print("MyPropertyClass.my_value_property.fset =", MyPropertyClass.my_value_property.fset)
 print("MyPropertyClass.my_value_property.fget =", MyPropertyClass.my_value_property.fget)
 print("MyPropertyClass.my_value_property.fdel =", MyPropertyClass.my_value_property.fdel)
 print("MyPropertyClass.my_value_property.__doc__ =", MyPropertyClass.my_value_property.__doc__)
-print("\nand then make use of them...")
+print("and then make use of them...")
 print("my_instance.my_value_property =", my_instance.my_value_property)     # calls get_value
 print("my_instance.my_value_property = 6")
 my_instance.my_value_property = 6               # this looks like we are reassigning class variable to object '6'
@@ -61,7 +66,9 @@ print(my_instance.get_value())
 print(my_instance.my_value_property)
 
 
-print("we can use property decorator...")
+print("\nwe can use property decorator...")
+
+
 class MyPropertyDecoratedClass:
     def __init__(self, a_value):
         self._my_value = a_value

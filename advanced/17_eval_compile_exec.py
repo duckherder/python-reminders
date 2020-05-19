@@ -1,11 +1,15 @@
+"""Use of eval(), compile() and exec()..."""
+
 my_generator = (x for x in range(5, 10))
 my_code_to_execute = "print(next(my_generator))"
-print("use eval to evaluate a string as code...")
+print("\nuse eval to evaluate a string as code...")
 eval(my_code_to_execute)
 eval(my_code_to_execute)
 
+
 def my_function(name):
     print(f"hello {name} from my_function")
+
 
 my_code_to_execute = "my_function('bob')"
 eval(my_code_to_execute)
@@ -24,7 +28,7 @@ try:
 except TypeError:
     print("this eval will fail again as eval() not in globals")
 
-print("you can use compile to create a code object that can be evaluated later...")
+print("\nyou can use compile to create a code object that can be evaluated later...")
 eval_code_object = compile("my_function('tim')", '', 'eval')
 eval(eval_code_object)
 try:

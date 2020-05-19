@@ -1,6 +1,8 @@
-"""class decorators are classes that include functions as state."""
+"""Class decorators are classes that include functions as state."""
 
-print("defining a class decorator...")
+print("\ndefining a class decorator...")
+
+
 class MyClassDecorator:
 
     def __init__(self, func):
@@ -16,18 +18,22 @@ class MyClassDecorator:
         self.func(*args, **kwargs)
 
 
-print("let's define a non-decorated function...")
+print("\nlet's define a non-decorated function...")
+
+
 def my_function():
     print("in my_function")
 
 
-print("decorate the function using the class constructor...")
+print("\ndecorate the function using the class constructor...")
 decorated_function = MyClassDecorator(my_function)
 print("type(decorated_function)=", type(decorated_function))        # decorated function is in fact a class instance
 print("now call the decorated function")
 decorated_function()                                                # call the instance -> __call__ for "()" operator
 
-print("decorating my_function with the class decorator using @...")
+print("\ndecorating my_function with the class decorator using @...")
+
+
 @MyClassDecorator                                                   # with parameters this is effectively...
 def my_function():                                                  # ...MyClassDecorator(my_function)
     print("in my_function")
@@ -38,7 +44,9 @@ my_function()                                                       # again this
 
 
 print("########################")
-print("what about parameters with a class decorator...")
+print("\nwhat about parameters with a class decorator...")
+
+
 class MyParameterisedClassDecorator:
 
     class MyLocalClassDecorator:                                      # you can create local class within class
@@ -84,10 +92,13 @@ class MyParameterisedClassDecorator:
         return self.func.get_state()
 
 
-print("decorating my_function without parameters...")
+print("\ndecorating my_function without parameters...")
+
+
 @MyParameterisedClassDecorator
 def my_function(my_function_parameter):
     print("in my_function:", my_function_parameter)
+
 
 print("calling my_function")
 my_function('non-parameterised class')
@@ -97,10 +108,13 @@ print("my_function.func.parameter =", my_function.func.parameter)
 print("my_function.func.state =", my_function.func.some_state)
 print("my_function.get_state() =", my_function.get_state())         # use a method to get state
 
-print("decorating my_function with parameters...")
+print("\ndecorating my_function with parameters...")
+
+
 @MyParameterisedClassDecorator(a_parameter=True)
 def my_function(my_function_parameter):
     print("in my_function:", my_function_parameter)
+
 
 print("calling my_function")
 my_function('parameterised class')

@@ -1,4 +1,7 @@
+"""__slots__ attribute is capable of reducing memory overheads associated with __dict__."""
+
 from pympler import asizeof
+
 
 class MyClassWithoutSlots(object):
     def __init__(self, x):
@@ -10,6 +13,7 @@ class MyClassWithoutSlots(object):
 class MyClassWithSlots(object):
     # instead of class variables being stored in __dict__ known variables can be stored in __slots__
     __slots__ = ['x', 'y', 'z']
+
     def __init__(self, x):
         self.x = x
         self.y = 'hello' + str(x)

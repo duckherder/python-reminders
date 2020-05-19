@@ -1,6 +1,7 @@
+"""Closures are functions that have free variables bound into them."""
+
 
 def my_closure_function(capitalise_flag=False):
-    # free variables bound to specific value enclosed in function scope
     prefix = ':start:'
     suffix = ':end:'
 
@@ -13,12 +14,11 @@ def my_closure_function(capitalise_flag=False):
     return make_string                          # returns a function
 
 
-print("can create a callable closure function object that has various values baked into it...")
-# creates the closure object incorporating free variables/parameters
+print("\ncan create a callable closure function object that has various values baked into it...")
 closure = my_closure_function(True)
-print(closure.capitalise_flag)
+print("closure.capitalise_flag =", closure.capitalise_flag)
 # function doesn't need to specify prefix, suffix etc.. each time
-print(closure('hello'))
+print("closure('hello') =", closure('hello'))
 # closure function object has 'capitalise' set to False
 closure = my_closure_function(False)
 print(closure.capitalise_flag)
@@ -33,8 +33,8 @@ def create_reduction_filter(lower, upper):
     return apply_filter
 
 
-print("closures can be used with filter() when the reducing function needs extra parameters to perform reduction...")
-# reduction filter that has multiple parameters
+print("\nclosures can be used with filter() when the reducing function needs extra parameters to perform filtering...")
+# create filter that has multiple parameters
 filter_5_9 = create_reduction_filter(5, 9)
 # pass a list of numbers to the filter
 print(list(filter(filter_5_9, list(range(0, 10)))))
@@ -47,7 +47,7 @@ def my_lambda_closure_function(capitalise_flag=False):
     return lambda x: prefix + (x.capitalize() if capitalise_flag else x) + suffix
 
 
-print("we can return a lambda when we create the closure...")
+print("\nwe can return a lambda when we create the closure...")
 closure = my_lambda_closure_function(True)
 print(closure('hello'))
 closure = my_lambda_closure_function(False)

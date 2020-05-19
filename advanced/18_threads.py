@@ -1,8 +1,11 @@
+"""Python threads."""
+
 import threading
 import time
 import concurrent.futures
 import random
 import datetime
+
 
 def do_threading(some_string, some_integer):
     print("in do_threading")
@@ -12,7 +15,7 @@ def do_threading(some_string, some_integer):
     print("do_threading exiting...")
 
 
-print("create a thread...")
+print("\ncreate a thread...")
 my_thread = threading.Thread(target=do_threading, args=('some arguments', 1))   # use 'daemon=True' to create daemon...
 print("start thread")                                                           # background process which will
 my_thread.start()                                                               # terminate when program finishes
@@ -42,7 +45,7 @@ class MyThread(threading.Thread):
         print("MyThread::run: stopped working")
 
 
-print("using a threaded class...")
+print("\nusing a threaded class...")
 my_threaded_class = MyThread()
 print("start the threaded class")
 my_threaded_class.start()
@@ -54,11 +57,14 @@ print("back from stop_processing")
 time.sleep(2)           # let MyThread stop before doing anything else
 
 
-print("using a thread pool executor for launching multiple threads...")
+print("\nusing a thread pool executor for launching multiple threads...")
+
+
 def do_some_stuff():
     time.sleep(3)
     print("done some stuff")
     return 'do_some_stuff return value'
+
 
 def do_some_other_stuff():
     time.sleep(1)
@@ -78,19 +84,21 @@ for f in concurrent.futures.as_completed([stuff_future_object, other_future_obje
     print(f)
     print("result from this thread =", f.result())
 
+
 def my_worker_thread(my_string):
     print("starting worker thread to calculate length of", my_string)
     if my_string == 'bob':
         time.sleep(3)
     return f"length of {my_string} is {len(my_string)}"
 
-print("using map to launch multiple worker threads...")
+
+print("\nusing map to launch multiple worker threads...")
 with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
     map_results = executor.map(my_worker_thread, ['bob', 'denise', 'reginald', 'sidney'])
     for result in map_results:       # will have to wait for 'bob' to finish as results provided in order given
         print(result)
 
-print("or as an alternative...")
+print("\nor as an alternative...")
 # https://stackoverflow.com/questions/20838162/how-does-threadpoolexecutor-map-differ-from-threadpoolexecutor-submit
 with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
     # use list comprehension, no need for map
@@ -109,7 +117,7 @@ def my_greedy_worker_thread(name, a_semaphore):
     return f'thread {name} is done'
 
 
-print("semaphores are usually shared between threads as a way to control resources...")
+print("\nsemaphores are usually shared between threads as a way to control resources...")
 my_semaphore = threading.Semaphore(2)       # 2 resources
 
 print("starting thread pool with 5 threads and 2 resources")
@@ -130,9 +138,10 @@ def wait_for_an_event(event, number_events):
         events_detected += 1
     print("all events detected, thread terminating...")
 
+
 my_event = threading.Event()
 
-print("using events to signal other threads...")
+print("\nusing events to signal other threads...")
 my_thread = threading.Thread(name='wait_for_an_event', target=wait_for_an_event, args=(my_event, 5))
 print("starting thread")
 my_thread.start()
@@ -142,10 +151,12 @@ for i in range(5):
     my_event.set()
 my_thread.join()
 
+
 def my_function(a_string):
     print(a_string)
 
-print("using timers to run a function at some future point in time...")
+
+print("\nusing timers to run a function at some future point in time...")
 timer_thread = threading.Timer(2, my_function,args=("time's up!",))
 timer_thread.start()
 print("timer_thread=", timer_thread)
@@ -161,6 +172,7 @@ def thread_a(a_barrier):
     # do something exciting....
     return f"thread_a: time = {datetime.datetime.now()}"
 
+
 def thread_b(a_barrier):
     print("thread_b started at", datetime.datetime.now())
     a_barrier.wait()
@@ -169,7 +181,7 @@ def thread_b(a_barrier):
     return f"thread_b: time = {datetime.datetime.now()}"
 
 
-print("using barriers to ensure threads sync up where necessary...")
+print("\nusing barriers to ensure threads sync up where necessary...")
 my_barrier = threading.Barrier(2)
 with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
     my_futures = [executor.submit(f, my_barrier) for f in [thread_a, thread_b]]
@@ -188,6 +200,7 @@ def thread_a(a_condition):
     # do something exciting....
     return f"thread_a: time = {datetime.datetime.now()}"
 
+
 def thread_b(a_condition):
     print("thread_b started at", datetime.datetime.now())
     with a_condition:
@@ -196,6 +209,7 @@ def thread_b(a_condition):
         print("thread_b: we can now use shared resource")
         # do something exciting....
     return f"thread_b: time = {datetime.datetime.now()}"
+
 
 def thread_c(a_condition):
     print("thread_c started at", datetime.datetime.now())
@@ -206,7 +220,8 @@ def thread_c(a_condition):
         # do something exciting....
     return f"thread_c: time = {datetime.datetime.now()}"
 
-print("using conditionals to let other threads know when they can start...")
+
+print("\nusing conditionals to let other threads know when they can start...")
 my_condition = threading.Condition()
 my_notifier_thread = threading.Thread(target=thread_a, args=(my_condition,))
 consumer_thread_b = threading.Thread(target=thread_b, args=(my_condition,))

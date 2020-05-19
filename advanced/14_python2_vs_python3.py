@@ -1,4 +1,5 @@
-"""not intended to be a full and complete list just some examples of the more interesting changes..."""
+"""Not intended to be a full and complete list just some examples of the more interesting changes."""
+
 import time
 import ipaddress                        # New module in Python 3.3
 import statistics                       # New module in Python 3.4
@@ -112,22 +113,28 @@ except TypeError:
     my_keyword_only_function(keyword_param_1=3, keyword_param_2='bob')
 
 print("function hinting...")
+
+
 def my_type_hinted_function2(name: str) -> bool:                # PEP 3107/484
     return "bob"
+
 
 try:
     f = open('does_not_exist.txt', 'r')
 except FileNotFoundError:
     print("new exception FileNotFoundError...")
 
+
 class BaseClass:
     def __init__(self):
         print("BaseClass __init__")
+
 
 class DerivedClass(BaseClass):
     def __init__(self):
         super().__init__()                                      # PEP 3135: no parameter required for super()
         print("DerivedClass __init__")
+
 
 print("super() requires no parameters...")
 my_instance = DerivedClass()
@@ -168,9 +175,12 @@ start_time = time.process_time()
 print("elapsed time from time.process_time() =", time.process_time() - start_time)
 
 print("reduce() is no longer builtin function - part of functools...")
-def my_reducer(x, y):  return x if x < y else y
-print(reduce(my_reducer, [5 , 3, -1, 4]))
 
+
+def my_reducer(x, y): return x if x < y else y
+
+
+print(reduce(my_reducer, [5, 3, -1, 4]))
 print("@= and @ are new operators introduced in Python 3.5 performing matrix multiplication...")
 A = [[1,2], [3,4]]
 B = [[10,100], [10, 100]]

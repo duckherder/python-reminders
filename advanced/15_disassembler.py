@@ -1,4 +1,5 @@
-"""for disassembling Python byte code"""
+"""For disassembling Python byte code."""
+
 import dis
 import traceback
 import sys
@@ -8,6 +9,7 @@ import sys
 print("Python is a stack-orientated language...")
 print("..there are 3 stacks: call, data (python code/function evaluation) and block (control structures)")
 
+
 def my_function(x, y):
     _z = x + y
     print(_z)
@@ -16,6 +18,7 @@ def my_function(x, y):
     except FileNotFoundError:
         pass
     return _z
+
 
 print("\ndisassemble an object - module, class, method, function etc...")
 dis.dis(my_function)
@@ -52,11 +55,14 @@ except AttributeError as e:
     print("type(e.__traceback__) =", type(e.__traceback__))
     traceback.print_tb(e.__traceback__, limit=1, file=sys.stdout)
 
+
 def my_function():
     print("print stack...")
     traceback.print_stack()
 
+
 my_function()
+
 
 def my_function():
     _my_list = [1, 2, 3]
@@ -66,7 +72,7 @@ def my_function():
         print("disassemble the last traceback in my_function()...")
         dis.distb(e.__traceback__)
 
+
 my_function()
 
-print("\nsee https://github.com/python/cpython/blob/master/Include/opcode.h for opcode header file")
-
+print("\nsee https://github.com/python/cpython/blob/master/Include/opcode.h for op-code header file")
