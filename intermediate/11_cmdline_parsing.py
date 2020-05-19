@@ -1,5 +1,8 @@
+"""How to get arguments from the command line."""
+
 import sys
 from argparse import ArgumentParser
+
 
 if __name__ == "__main__":
     print("call this script using command line parameters, such as 'bob.txt --verbose=1'")

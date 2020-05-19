@@ -1,28 +1,36 @@
+"""Serialization is the process of converting objects, for example, into a character stream."""
+
 import pickle
 import json
 
-print("\nbytes are immutable sequence of integers in range 0 to 255")
+print("\nbytes are immutable sequence of integers in range 0 to 255...")
 my_string = 'hello you'
-my_bytes = bytes(my_string, encoding='utf-8')
+print("my_string =", my_string)
+my_bytes = bytes(my_string, encoding='utf-8')       # note encoding style
 print("my_bytes type:", type(my_bytes))
 print("my_bytes:", my_bytes)
 try:
     my_bytes[0] = ord('d')
 except TypeError:
-    print("bytes are immutable so can not change values")
+    print("bytes are immutable so you can not change any values")
 
-print("we can convert an integer list into a bytes as well provided 0 <= x <256")
-my_bytes = bytes([0, 2, 3, 255])
+print("\nwe can convert an integer list into a bytes as well provided 0 <= x <256...")
+my_integer_list = [0, 2, 3, 255]
+print("my_integer_list =", my_integer_list)
+my_bytes = bytes(my_integer_list)
 print("my_bytes type:", type(my_bytes))
 print("my_bytes:", my_bytes)
 
+my_integer_list = [0, 2, 3, 256]
+print("my_integer_list =", my_integer_list)
 try:
-    my_bytes = bytes([0, 2, 3, 256])
+    my_bytes = bytes(my_integer_list)
 except ValueError:
-    print("integer values in list must 0 <= x < 256!!")
+    print("ValueError exception raised: integer values in list must be 0 <= x < 256!!")
 
-print("\nbytearray are a mutable sequence of integers in range 0 to 255")
+print("\nbytearray is a mutable sequence of integers in range 0 to 255...")
 my_string = 'hello you'
+print("my_string =", my_string)
 my_bytes = bytearray(my_string, encoding='utf-8')
 print("my_bytes type:", type(my_bytes))
 print("my_bytes:", my_bytes)
@@ -42,10 +50,11 @@ class MyClass:
 my_object = MyClass(5)
 my_object.increment()           # self.value becomes 6
 
-print("\nwe can use pickle to snapshot and save any object")
+print("\nwe can use the pickle module to snapshot and save any object...")
 print("default pickle protocol =", pickle.DEFAULT_PROTOCOL)
+print("my_object.value =", my_object.value)
 print("we can serialize an object to a bytes object using pickle.dumps()")
-# you can use dump() to write to file
+# you can use dump() to serialize and write direct to a file
 my_pickled_object_bytes = pickle.dumps(my_object)
 print("pickled object type =", type(my_pickled_object_bytes))
 print("pickled object:", my_pickled_object_bytes)
@@ -53,9 +62,9 @@ print("pickled object:", my_pickled_object_bytes)
 print("we can deserialize a pickled object using pickle.loads()")
 # you can use load() to read from file
 my_unpickled_object = pickle.loads(my_pickled_object_bytes)
-print("value should match original object", my_unpickled_object.value)
+print("value in un-pickled object should match original object:", my_unpickled_object.value)
 
-print("\nwe can use json to convert dictionaries to readable strings and back again")
+print("\nwe can use json to convert dictionaries to readable strings and back again...")
 my_dictionary = {
     'name': 'bob',
     'age': 19,

@@ -1,13 +1,14 @@
-"""context managers allow for clean allocation and de-allocation of resources resources regardless"""
+"""Context managers allow for clean allocation and de-allocation of resources regardless."""
 
+print("\nFile IO is a context manager that allows use of 'with' statement...")
 try:
     with open('15_context_manager.py', 'r') as f:
         raise ValueError("raising some random exception")
 except ValueError:
-    print("file will be closed by with statement regardless of exception...")
+    print("file will be closed by with statement regardless of exception")
 
 
-class MyContextManager:
+class MyContextManager:                                 # needs to implement __enter__ and __exit__
     def __init__(self, swallow_exception=False):
         print("creating context manager")
         self.resource_handle = 99
@@ -24,7 +25,8 @@ class MyContextManager:
         print("exc_tb =", exc_tb)
         return self.swallow_exception if exc_tb is not None else False
 
-print("we can create our own context manager...")
+
+print("\nwe can create our own context manager...")
 my_context_manager = MyContextManager()
 
 try:
@@ -34,7 +36,7 @@ except ValueError:
     pass
 
 
-print("if exception raised in our own context manager...")
+print("\nif exception raised in our own context manager...")
 try:
     with my_context_manager as handle:
         print("in 'with' block, raising exception")
@@ -43,7 +45,7 @@ except ValueError:
     print("exception: handle resources freed regardless of exception")
 
 
-print("if exception raised in our own context manager we can swallow it if we wish...")
+print("\nif exception raised in our own context manager we can swallow it if we wish...")
 my_context_manager = MyContextManager(swallow_exception=True)
 try:
     with my_context_manager as handle:

@@ -1,3 +1,6 @@
+"""Python supports classes and inheritance."""
+
+
 class Student:
     """Student class."""
 
@@ -39,49 +42,50 @@ class UniversityStudent(Student):
         print("Location:", self.university)
 
 
-print("create a student object...")
+print("\ncreate a student object called 'bob' from Student class...")
 bob = Student('bob', 19)
 bob.print_age()
 
-print("create a college student object...")
+print("\ncreate a college student object called 'susan' from CollegeStudent subclass...")
 susan = CollegeStudent('edinburgh', 'susan', 21)
+susan.print_age()               # will use base Student class method
 
-# we can use getattr
-print("does bob have an attribute called age", hasattr(bob, 'age'))
-print("getattr(bob, 'age') =", getattr(bob, 'age'))
+print("\nwe can use getattr() on user defined objects...")
+print("does bob have an attribute called age:", hasattr(bob, 'age'))
+print("getattr(bob, 'age'):", getattr(bob, 'age'))
 print("bob.age =", bob.age)       # or directly
-susan.print_age()               # use base class
 
+print("\nclasses have multiple attributes...")
+print(dir(UniversityStudent))
+print("UniversityStudent.__class__ = ", UniversityStudent.__class__)
+print("UniversityStudent.__doc__ = ", UniversityStudent.__doc__)
+print("UniversityStudent.__dict__ = ", UniversityStudent.__dict__)
+
+print("\ncreate a university student object called 'dave' from UniversityStudent subclass...")
 dave = UniversityStudent('edinburgh', 'dave', 20)
 dave.print_age()
 
-print("classes have multiple attributes...")
-print(dir(UniversityStudent))
-print("UniversityStudent.__class__ = ", dave.__class__)
-print("UniversityStudent.__doc__ = ", dave.__doc__)
-print("UniversityStudent.__dict__ = ", dave.__dict__)
-
 # instance with subclassing
-print("is dave an instance of Student", isinstance(dave, Student))
-print("is dave an instance of UniversityStudent",
+print("is dave an instance of Student:", isinstance(dave, Student))
+print("is dave an instance of UniversityStudent:",
       isinstance(dave, UniversityStudent))
-print("is dave an instance of CollegeStudent",
+print("is dave an instance of CollegeStudent:",
       isinstance(dave, CollegeStudent))
 
-print("is dave of type Student", type(dave) is Student)
+print("is dave of type Student:", type(dave) is Student)
 # type is exactly of UniversityStudent
-print("is dave of type UniversityStudent", type(dave) is UniversityStudent)
-print("is dave an type CollegeStudent", type(dave) is CollegeStudent)
+print("is dave of type UniversityStudent:", type(dave) is UniversityStudent)
+print("is dave an type CollegeStudent:", type(dave) is CollegeStudent)
 
-print("is UniversityStudent a subclass of Student",
+print("is UniversityStudent a subclass of Student:",
       issubclass(UniversityStudent, Student))
-print("is Student a subclass of UniversityStudent",
+print("is Student a subclass of UniversityStudent:",
       issubclass(Student, UniversityStudent))
 
-print("you can override methods in the subclass")
+print("\nyou can override methods in the subclass...")
 dave.print_location()
 
-print("you can add two classes in your own fashion by implementing __add__() method...")
+print("\nyou can add two classes in your own fashion by implementing __add__() method...")
 twin_a = Student('bob', 21)
 twin_b = Student('tom', 21)
 print(twin_a)                       # uses __str__ method
@@ -90,13 +94,13 @@ print(twin_b)                       # uses __str__ method
 both_twins = twin_a + twin_b        # uses __add__ method
 print(both_twins)
 
-print("instance methods are callable...but so are class methods and classes...")
+print("\ninstance methods are callable...but so are class methods and classes...")
 print("callable(dave.print_location) =", callable(dave.print_location))
 print("callable(UniversityStudent.print_location) =",
       callable(UniversityStudent.print_location))
 print("callable(UniversityStudent) =", callable(UniversityStudent))
 
-print("vars() built in function returns the __dict__ attribute of an object")
+print("\nvars() built in function returns the __dict__ attribute of an object...")
 # this is a list of the changeable attributes of dave
 print(vars(dave))
 print("when I do dave.name Python does a look-up in dave.__dict__")

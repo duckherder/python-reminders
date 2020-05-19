@@ -1,3 +1,5 @@
+"""Importing modules from other packages and creating your own package."""
+
 import my_package as bernard                        # import package and rename
 # import module from locally defined my_package
 from my_package import fab
@@ -10,12 +12,12 @@ from datetime import *                              # generally not recommended 
                                                     # ...with other modules or reduce readability in code
 bernard.fab.my_fab_function('bernard?')
 
-print("use fab module directly to access classes, functions and module variables...")
+print("\nuse bernard's fab module directly to access classes, functions and module variables...")
 instance = fab.MyFabClass(1)
 fab.my_fab_function('hello')
 print(fab.MY_FAB_GLOBAL_VARIABLE)
 
-print("use imported classes names...")
+print("\nuse imported classes names...")
 tina = Tina(3)
 
 print("we can use dir() on this import module")

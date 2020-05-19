@@ -1,8 +1,10 @@
+"""Exception handling in Python."""
+
 import builtins
 import inspect
 import pprint
 
-print("what if we do a simple divide by zero...")
+print("\nwhat if we do a simple divide by zero...")
 try:
     z = 1 / 0
 except ZeroDivisionError:
@@ -13,14 +15,14 @@ try:
 except ZeroDivisionError as e:
     print(e)
 
-print("what if we do a bad index into a list...")
+print("\nwhat if we do a bad index into a list...")
 my_list = [1, 2, 3]
 try:
     print(my_list[8])
 except IndexError as e:
     print(e)
 
-print("what are the builtin exception types?...")
+print("\nwhat are the builtin exception types?...")
 pprint.pprint([x for x in dir(builtins) if inspect.isclass(
     eval(x)) and issubclass(eval(x), BaseException)])
 
@@ -28,9 +30,9 @@ print("catch all builtin exceptions")
 try:
     z = 1 / 0
 except BaseException:
-    print("catch all exceptions subclassed from BaseException!")
+    print("catching all builtin exceptions subclassed from BaseException!")
 
-print("we can use an 'else' condition for what to do if try succeeds...")
+print("\nwe can use an 'else' condition for what to do if try succeeds...")
 try:
     f = open("bob.txt", "r")           # try something - an action
 except FileNotFoundError:
@@ -48,7 +50,7 @@ else:
     print("no exception so do something else as a consequence")
 
 
-print("we can use 'finally' condition for what to do regardless of try succeeding...")
+print("\nwe can use 'finally' condition for what to do regardless of try succeeding...")
 try:
     print("try an open non-existent file")
     f = open("bob.txt", "r")
@@ -66,7 +68,7 @@ finally:
     # will execute regardless of
     print("and finally do this whatever...")
 
-print("nested try-excepts...")
+print("\nnested try-excepts...")
 try:
     try:
         z = 1 / 0
@@ -85,7 +87,7 @@ def my_function(x):
     return
 
 
-print("working function with no exceptions raised...")
+print("\nworking function with no exceptions raised...")
 try:
     my_function(1)
 except (TypeError, ValueError) as e:
@@ -102,7 +104,7 @@ try:
 except (TypeError, ValueError) as e:
     print("exception caught:", e)
 
-print("how do i write my own exception handler?...")
+print("\nhow do i write my own exception handler?...")
 
 
 class MyExceptionHandler(Exception):

@@ -1,3 +1,6 @@
+"""Representations versus strings."""
+
+
 class UniversityStudent():
     """University student class."""
 
@@ -16,16 +19,16 @@ class UniversityStudent():
 
 dave = UniversityStudent('edinburgh', 'dave', 20)
 
-print("using user defined versions of __repr__ and __str__ in class...")
-print("%r" % dave)      # uses __repr__
-print("%s" % dave)      # uses __str__
+print("\nusing user defined versions of __repr__ and __str__ in class...")
+print("with __repr__: %r" % dave)      # uses __repr__
+print("with __str__: %s" % dave)      # uses __str__
 
 # create an object based on what the object is
-print("we can evaluate the representation to create the same object...")
-print(repr(dave))
+print("\nwe can evaluate the representation to create the same object...")
+print("repr(dave) = ", repr(dave))
 debug = eval(repr(dave))
 
 unicode_university = UniversityStudent("\u018e", "sam", 22)
-print(repr(unicode_university))
+print("repr(unicode_university) =", repr(unicode_university))
 # get unicode as ASCII escape characters
-print(ascii(unicode_university))
+print("ascii(unicode_university) =", ascii(unicode_university))

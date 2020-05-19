@@ -1,9 +1,11 @@
-print("we would expect the following two variables have different ids or addresses")
+"""Everything in Python is an object."""
+
+print("\nwe might expect the following two variables have different ids or addresses...")
 my_first_int = 3
 my_second_int = 3
 print("my_first_int is at id", id(my_first_int))
 print("my_second_int is at id", id(my_second_int))
-print("..this is because both variables that bind to the same object, namely 3")
+print("..this is because in Python both variables bind to the same object, namely the object '3'")
 
 my_first_string = 'hello!'
 my_second_string = 'hello!'
@@ -33,17 +35,17 @@ my_first_string += 'y'                              # add to string
 print(my_first_string)                              # result looks as expected
 print("resulting string is now at a different address - same name but new object",
       id(my_first_string))
-print("but the original string '", my_first_string_original,
-      "' still exists at", id(my_first_string_original))
+print(f"but the original string '{my_first_string_original}'",
+      "still exists at", id(my_first_string_original))
 
-print("so what about tuples, they are immutable like strings and integers")
+print("\nso what about tuples, they are immutable like strings and integers...")
 my_first_tuple = (1, 2, 3)
 my_second_tuple = (1, 2, 3)
 print("my_first_tuple is at id", id(my_first_tuple))
 print("my_second_tuple is at id", id(my_second_tuple))
 print("yep, as expected the same ids")
 
-print("if i modify what the variable points at it will change the id...")
+print("if i modify what the variable points at it will change the id")
 print("my_second_tuple", my_second_tuple)
 my_second_tuple = (1, 2, 4)
 print("my_second_tuple", my_second_tuple, "is now at id", id(my_second_tuple))
@@ -69,10 +71,8 @@ my_third_list[1] = -888
 print("my_second_list", my_second_list)
 print("my_third_list", my_third_list)
 
-print("so what happens with variables when passed and returned from functions")
 
-
-def my_function(a_list, an_integer, a_string) -> bool:
+def my_function(a_list, an_integer, a_string) -> tuple:
     print("a_list at id", id(a_list))
     # this reference is immutable so can't be changed in function
     print("an_integer at id", id(an_integer))
@@ -84,7 +84,7 @@ def my_function(a_list, an_integer, a_string) -> bool:
     a_list[0] = 99
     print("but surely i can change an_integer or a_string as well...")
     a_string = "my lovely new string"
-    print("but what have not modified the object 'hello' but the changed the binding of a_string to a new object")
+    print("no, because we have not modified the string 'hello' but the changed the binding of a_string to a new object")
     print("a_string is now at id", id(a_string))
     _bool_result = an_integer < len(a_list)
     print("_bool_result at id", id(_bool_result))
@@ -93,21 +93,24 @@ def my_function(a_list, an_integer, a_string) -> bool:
     return _bool_result, _local_list
 
 
+print("\nso what happens with variables when passed and returned from functions...")
 my_list = [1, 2, 3]
 my_integer = 1
 my_string = 'hello'
 print("my_list at id", id(my_list))
 print("my_integer at id", id(my_integer))
 print("my_string at id", id(my_string))
+print("calling my_function")
 bool_result, returned_list = my_function(my_list, my_integer, my_string)
+print("returning from my_function shows new return variables bound to same objects that locals variables were bound")
 # local object not destroyed just local binding
 print("bool_result at id", id(bool_result))
 # global variable binds to object created in function
 print("returned_list at id", id(returned_list))
-print("my_list has been modified in the function", my_list)
-print("but my_string is not modified by the function", my_string)
+print("my_list has been modified in my_function:", my_list)
+print("but my_string is not modified by my_function:", my_string)
 
-print("everything is an object...")
+print("\neverything is an object including None...")
 print("None is an object at id", id(None))
 print("None has attributes like any other object")
 print(dir(None))
@@ -123,20 +126,20 @@ class Bob:
 
 
 bob = Bob(3)
-print("instances of class Bob are objects obviously...")
+print("\ninstances of class Bob are objects obviously...")
 print("id(bob) =", id(bob))
-print("..with attributes of course...")
+print("..with attributes of course")
 print(dir(bob))
 
-print("BUT the class Bob is also an object, not so obviously...")
+print("\nBUT the class Bob is also an object, not so obviously...")
 print("id(Bob) =", id(Bob))
-print("..with attributes...")
+print("..with attributes")
 print(dir(Bob))
 print("note that instance_variable is not an attribute of the class, only the instance")
 print("note that class_variable is an attribute of both the class and the instance")
 
 robert = Bob(4)
-print("robert's instance variable is a different object to bob's")
+print("\nrobert's instance variable is a different object to bob's...")
 print("id(bob.instance_variable) =", id(bob.instance_variable))
 print("id(robert.instance_variable) =", id(robert.instance_variable))
 print("..but roberts and bob's mutable class variable is the same as class Bobs")

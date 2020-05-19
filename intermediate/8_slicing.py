@@ -1,6 +1,8 @@
-print("you can use slicing to access into lists")
+"""Lists and tuples allow you to use slicing to extract elements."""
+
+print("\nyou can use slicing to access into lists...")
 my_list = [0, 1, 2, 3, 4, 5, 6, 7]
-print(my_list)
+print("my_list =", my_list)
 
 print("use [n] to access a specific item")
 print("my_list[2] =", my_list[2])
@@ -18,7 +20,7 @@ print("my_list[4:] = ", my_list[4:])
 print("use [:end] to return a slice that includes everything up to but excluding end")
 print("my_list[:4] =", my_list[:4])
 
-print("use [:] for items in the list")
+print("use [:] for all items in the list")
 print("my_list[:] =", my_list[:])
 
 print("use a [::step] value to use a different step value when slicing")
@@ -36,7 +38,12 @@ print("my_list[:-1:1] = ", my_list[:-1:1])
 print("my_list[-2:2:-1] = ", my_list[-2:2:-1])
 # ...but step backwards
 
-print("another way to do above...")
+print("\nnote, as an aside, another way to perform above is to use eval...")
 slice_tests = ['my_list[::2]', 'my_list[1::2]', 'my_list[::-1]']
 for test in slice_tests:
     print(test, "=", eval(test))
+
+print("\ntuples are ordered and can be indexed so...")
+my_tuple = ('bob', 1, 3.4, None, 'the end')
+print("my_tuple =", my_tuple)
+print("my_tuple[1:-1:2] =", my_tuple[1:-1:2])

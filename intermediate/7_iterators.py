@@ -7,19 +7,19 @@
 
 import random
 
-print("all(): returns True if all elements of an iterable list are True...")
-print(all([True, True, True, True]))
-print(all([True, True, False, True]))
+print("\nall(): returns True if all elements of an iterable list are True...")
+print("all([True, True, True, True]) =", all([True, True, True, True]))
+print("all([True, True, False, True]) =", all([True, True, False, True]))
 
-print("any(): returns True if all elements of an iterable tuple are True...")
-print(any((False, False, False, True)))
-print(any((False, False, False, False)))
+print("\nany(): returns True if all elements of an iterable tuple are True...")
+print("any((False, False, False, True)) =", any((False, False, False, True)))
+print("any((False, False, False, False)) =", any((False, False, False, False)))
 
-print("min/max(): return min/max of an iterable...")
-print(max(["bob", "tim", "andy"]))
-print(min([1, 2, -3]))
+print("\nmin/max(): return min/max of an iterable...")
+print("max(['bob', 'tim', 'andy']) =", max(['bob', 'tim', 'andy']))
+print("min([1, 2, -3]) =", min([1, 2, -3]))
 
-print("use next function to read lines from file...")
+print("\nuse next function to read lines from file...")
 with open('7_iterators.py', 'r') as f:        # f is a file handle but also an iterator...
     try:                                      # .. it has a __next__ attribute
         while True:
@@ -30,29 +30,29 @@ with open('7_iterators.py', 'r') as f:        # f is a file handle but also an i
 
 my_list = [1, 5, 3, 'bob', 2]
 
-print("common way to use an iterator is in a for loop...")
+print("\ncommon way to use an iterator is in a for loop...")
 for an_item in my_list:
     print(an_item)
 
-print("or if you get given an iterator using iter() - a list is iterable but is not an iterator itself...")
+print("or if you get given an iterator using iter() - a list is iterable but is not an iterator itself")
 # list have an __iter__ attribute to return an iterator but no __next__
 my_iter = iter(my_list)
 for an_item in my_iter:
     print(an_item)
 
-# note this is how a for loop is implemented
-print("you can use iter() and next()...")
+print("\nyou can use iter() and next() to implement a for loop...")
+# note this is how a for loop is actually implemented
 my_iter = iter(my_list)
 while True:
     try:
         # next() will throw StopIteration if nothing left in iterable
         print(next(my_iter))
     except StopIteration:
-        print("end of list!")
+        print("StopIteration exception raised so must be at end of list!")
         break
 
 my_iter = iter(my_list)
-print("or the __next__() attribute of the iterator...")
+print("\nalternatively, you can use the __next__() attribute of the iterator...")
 while True:
     try:
         # next() will throw StopIteration if nothing left in iterable
@@ -62,7 +62,8 @@ while True:
         break
 
 
-print("we can create an iterable class by implementing the __getitem__ attribute...")
+print("\nwe can create an iterable class by implementing the __getitem__ attribute...")
+
 
 class GetItemClass:
     def __init__(self):
@@ -98,12 +99,12 @@ print("next(my_getitem_iterator) =", next(my_getitem_iterator))
 print("next(my_getitem_iterator) =", next(my_getitem_iterator))
 print("next(my_getitem_iterator) =", next(my_getitem_iterator))
 
-print("we can create an iterable class by implementing __iter__ and __next__ attributes...")
+print("\nwe can create an iterable class by implementing __iter__ and __next__ attributes...")
 
 
 class IterableClass:
-    """class is iterable but also an iterator"""        # note this is not always true - sometimes an iterable
-    def __init__(self, limit):                          # will return a separate iterator instance e.g. a list
+    """class is iterable but also an iterator"""        # note this is not always true - sometimes an iterable...
+    def __init__(self, limit):                          # ...will return a separate iterator instance e.g. a list
         self.limit = limit
 
     def __iter__(self):                 # called when you use iter() on an instance of IterableClass
@@ -128,19 +129,20 @@ def my_random_number_generator():
     return random.randint(1, 10)
 
 
-print("you can pass a function and a sentinel - value that raises the exception if returned from function...")
+print("\nyou can pass iter() a function and a sentinel, a value that raises the exception if returned from function...")
 sentinel_based_iterator = iter(my_random_number_generator, 5)
 while True:
     try:
         print(next(sentinel_based_iterator))
     except StopIteration:
-        print("jackpot! random number of 5!")
+        print("jackpot! my_random_number_generator() function has returned 5!")
         break
 
+print("\nyou can also use it with iter() in a for loop...")
 for random_value in iter(my_random_number_generator, 5):
     print(random_value)
 
-print("you can use zip to create an iterable of tuples that aggregate from a number of iterables...")
+print("\nyou can use zip to create an iterable of tuples that aggregate from a number of iterables...")
 my_list_a = ['bob', 'simon', 'john', 'dave']
 my_list_b = [1, 2, 3]
 my_list_c = [3.1, 3.4, 1.4, 8.3]
@@ -151,7 +153,7 @@ for zipped_tuple in zip(my_list_a, my_list_b, my_list_c):
     print(zipped_tuple)
 
 
-print("we can create an iterable class that returns a separate iterator object...")
+print("\nwe can create an iterable class that returns a separate iterator object...")
 # note this is useful if you want multiple separate iterators looping over the same iterable object
 
 
