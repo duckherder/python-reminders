@@ -30,6 +30,23 @@ print("type(7/2) =", type(7/2))
 print("strings are unicode by default, no u prefix required...")
 my_string = "\u018e"
 
+
+class Bob:                      # no need to use Bob(object) to use new-style class in Python 3
+    def __init__(self):
+        pass
+
+
+print("classes are new-style only and type of class can be used to mean the same...")
+bob = Bob()
+print("instance bob.__class__ =", bob.__class__)
+print("type(bob) =", type(bob))     # this would return built-in type 'instance' in Python 2
+
+print("classes are instances of object but also the metaclass 'type'...")
+print("type(Bob) =", type(Bob))         # type metaclass is an instance of itself
+print("type(type) =", type(type))       # type() is an instance of itself, type returns a new instance of type metaclass
+print("Bob.__bases__ =", Bob.__bases__)
+print("Bob.__mro__ = ", Bob.__mro__)    # new style allows for method resolution order to be seen
+
 print("range() now returns an iterable range object instead of a list...")
 range_object = range(1000)                                                 # better memory footprint
 print("type(range_object) =", range_object)
@@ -65,15 +82,17 @@ except FileNotFoundError:
     pass
 
 try:
-    a = [1,2,3]
-    b = [1,2,3]
+    a = [1, 2, 3]
+    b = [1, 2, 3]
     c = cmp(a, b)
 except NameError:
     print("cmp no longer supported in Python 3...")
 
+
 # you can implement it yourself if you so wish
 def my_cmp(a_value, b_value):
     return (a_value > b_value) - (a_value < b_value)
+
 
 a = [1, 4, 3]
 b = [1, 2, 2]
@@ -92,6 +111,8 @@ print("second =", second)
 print("rest =", rest)
 
 print("nonlocal keyword...")                                    # PEP 3104
+
+
 def my_nested_func():
     my_enclosing_variable = 'bob'
 
@@ -105,6 +126,7 @@ def my_nested_func():
 
 def my_keyword_only_function(*, keyword_param_1, keyword_param_2):
     print(keyword_param_1, keyword_param_2)
+
 
 try:
     my_keyword_only_function(3, 'bob')                          # PEP 3102 in Python 3.0
