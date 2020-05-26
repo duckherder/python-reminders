@@ -117,11 +117,15 @@ print(dir(None))
 print("and a size of", None.__sizeof__())
 print("my_function is an object at id", id(my_function))
 
+print("\nwhat attributes does an 'object' have...")
+print("dir(object) =", dir(object))
+print("which implies methods such as __new__ (memory allocation) and __init__ (initialisation) can be overloaded")
 
-class Bob:
+
+class Bob:                                  # implies Bob(object) in Python 3 i.e. new style class
     class_variable = [1, 2, 3]              # a mutable list
 
-    def __init__(self, x):
+    def __init__(self, x):                  # overload 'object' base class __init__ method
         self.instance_variable = x
 
 
