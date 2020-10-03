@@ -73,14 +73,15 @@ print("my_third_list", my_third_list)
 
 
 def my_function(a_list, an_integer, a_string) -> tuple:
+    """Variables are passed by assignment (not reference or value)"""
     print("a_list at id", id(a_list))
-    # this reference is immutable so can't be changed in function
+    # an_integer is immutable so can't be changed in function
     print("an_integer at id", id(an_integer))
-    # this reference is also immutable
+    # a_string is also immutable
     print("a_string at id", id(a_string))
-    print("all parameter ids are the same regardless of mutability - because they are passed by *reference*")
+    print("all parameter ids are the same regardless of mutability - because they are passed by assignment")
     print("...or like before simply binding a new name to the same object")
-    print("a_list is another reference to my_list, which means I can change my_list in this function")
+    print("a_list is another binding to my_list, which means I can change my_list in this function")
     a_list[0] = 99
     print("but surely i can change an_integer or a_string as well...")
     a_string = "my lovely new string"
