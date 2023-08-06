@@ -1,4 +1,4 @@
-"""Simple example with PyQt"""
+"""Simple dialog example with fixed locations using PyQt"""
 #pylint: disable=c-extension-no-member
 
 import sys
